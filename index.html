@@ -129,13 +129,11 @@
         document.getElementById('mainTitleDisplay').style.fontSize = titleTextSize + 'px';
         document.getElementById('subtitleDisplay').textContent = subtitle;
         let subtitleTextSize = 96;
-        if (subtitle.length > 18) {
-          subtitleTextSize = 52;
-        } else if (subtitle.length > 15) {
+        if (subtitle.length > 32) {
           subtitleTextSize = 64;
-        } else if (subtitle.length > 12) {
+        } else if (subtitle.length > 26) {
           subtitleTextSize = 76;
-        } else if (subtitle.length > 9) {
+        } else if (subtitle.length > 18) {
           subtitleTextSize = 96;
         }
         document.getElementById('subtitleDisplay').style.fontSize = subtitleTextSize + 'px';
