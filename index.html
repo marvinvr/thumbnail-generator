@@ -25,6 +25,7 @@
           class="p-2 border rounded"
           onchange="updateImage()"
         >
+        <p class="text-sm text-gray-600 text-center">Or paste an image using CMD + V (Mac) / CTRL + V (Windows)</p>
         <input 
           type="text" 
           id="mainTitle" 
@@ -87,6 +88,26 @@
     <script>
       const DEFAULT_TITLE = 'Main Title';
       const DEFAULT_SUBTITLE = 'Subtitle';
+
+      // Add paste event listener to the document
+      document.addEventListener('paste', async (event) => {
+        event.preventDefault();
+        const items = (event.clipboardData || window.clipboardData).items;
+
+        for (const item of items) {
+          if (item.type.indexOf('image') !== -1) {
+            const file = item.getAsFile();
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+              document.getElementById('thumbnailImage').setAttribute('href', e.target.result);
+            };
+            
+            reader.readAsDataURL(file);
+            break;
+          }
+        }
+      });
 
       function updateText() {
         const mainTitle = document.getElementById('mainTitle').value || DEFAULT_TITLE;
