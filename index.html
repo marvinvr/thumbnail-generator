@@ -114,7 +114,31 @@
         const subtitle = document.getElementById('subtitle').value || DEFAULT_SUBTITLE;
         
         document.getElementById('mainTitleDisplay').textContent = mainTitle;
+        let titleTextSize = 220;
+        if (mainTitle.length > 20) {
+          titleTextSize = 80;
+        } else if (mainTitle.length > 18) {
+          titleTextSize = 100;
+        } else if (mainTitle.length > 15) {
+          titleTextSize = 120;
+        } else if (mainTitle.length > 12) {
+          titleTextSize = 140;
+        } else if (mainTitle.length > 9) {
+          titleTextSize = 180;
+        }
+        document.getElementById('mainTitleDisplay').style.fontSize = titleTextSize + 'px';
         document.getElementById('subtitleDisplay').textContent = subtitle;
+        let subtitleTextSize = 96;
+        if (subtitle.length > 18) {
+          subtitleTextSize = 52;
+        } else if (subtitle.length > 15) {
+          subtitleTextSize = 64;
+        } else if (subtitle.length > 12) {
+          subtitleTextSize = 76;
+        } else if (subtitle.length > 9) {
+          subtitleTextSize = 96;
+        }
+        document.getElementById('subtitleDisplay').style.fontSize = subtitleTextSize + 'px';
       }
 
       function updateImage() {
