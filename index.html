@@ -6,6 +6,7 @@
     <title>Marvin's Super Simple Thumbnail Generator</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script defer data-domain="thumbnails.marvinvr.ch" src="https://stats.marvinvr.ch/js/script.js"></script>
   </head>
   <body>
     <div class="flex flex-col items-center justify-center min-h-screen p-4 gap-8">
@@ -73,11 +74,11 @@
           <text 
             id="subtitleDisplay" 
             x="640" 
-            y="460"
+            y="476"
             text-anchor="middle" 
             dominant-baseline="middle"
             fill="white"
-            style="font-size: 96px; font-weight: 600; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));"
+            style="font-size: 136px; font-weight: 600; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));"
           >
             ...
           </text>
@@ -128,13 +129,13 @@
         }
         document.getElementById('mainTitleDisplay').style.fontSize = titleTextSize + 'px';
         document.getElementById('subtitleDisplay').textContent = subtitle;
-        let subtitleTextSize = 96;
+        let subtitleTextSize = 136;
         if (subtitle.length > 32) {
-          subtitleTextSize = 64;
+          subtitleTextSize = 116;
         } else if (subtitle.length > 26) {
-          subtitleTextSize = 76;
-        } else if (subtitle.length > 18) {
           subtitleTextSize = 96;
+        } else if (subtitle.length > 18) {
+          subtitleTextSize = 76;
         }
         document.getElementById('subtitleDisplay').style.fontSize = subtitleTextSize + 'px';
       }
@@ -203,8 +204,9 @@
           ctx.drawImage(svgImg, 0, 0, 1280, 720);
           
           // Create download link
+          const title = document.getElementById('mainTitleDisplay').textContent;
           const link = document.createElement('a');
-          link.download = 'youtube-thumbnail.png';
+          link.download = `thumbnail-${title}.png`;
           link.href = canvas.toDataURL('image/png');
           link.click();
           
